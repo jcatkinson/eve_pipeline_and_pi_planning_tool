@@ -91,7 +91,7 @@ This project is released under the [MIT License](LICENSE).
 
 This tool uses the **EVE Swagger Interface (ESI)** and data derived from the
 **EVE Online Static Data Export (SDE)**. Both are provided under the
-[EVE Online Developer License Agreement (DLA)](https://developers.eveonline.com/resource/license-agreement).
+[EVE Online Developer License Agreement (DLA)](https://developers.eveonline.com/license-agreement).
 
 > EVE Online, the EVE logo, EVE and all associated logos and designs are the
 > intellectual property of **CCP hf**. All artwork, screenshots, characters,
