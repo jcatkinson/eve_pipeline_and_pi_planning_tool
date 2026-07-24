@@ -1,4 +1,4 @@
-mailto:bugs@atkinsoncybersec.ca?subject=Eve%20Pi%20Optimizer%20Bug%20Report&body=Description%20of%20the%20issue:%0A%0ACharacter%20Name:%0AError%20Details:
+[🐛 Report a Bug](mailto:bugs@atkinsoncybersec.ca?subject=Eve%20Pi%20Optimizer%20Bug%20Report&body=Description%20of%20the%20issue:%0A%0ACharacter%20Name:%0AError%20Details:)
 
 ## 🚀 Features & Architecture
 
