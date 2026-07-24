@@ -2,7 +2,7 @@
 
 ## Overview
 
-Add a hidden "admin" tier for the owner (EVE character ID `2118711449`). Any character
+Add a hidden "admin" tier for the owner (EVE character ID `ADMIN_CHARACTER_ID). Any character
 linked under that owner's Supabase account inherits admin status automatically.
 
 **Key design decisions:**
@@ -33,7 +33,7 @@ environment, consistent with how all other secrets are handled in this codebase.
 **Todo List:**
 1. Add `ADMIN_CHARACTER_ID: int = int(os.environ.get("ADMIN_CHARACTER_ID", "0"))` to
    `src/config.py` (below the existing `CHARACTER_ID` line)
-2. Add `ADMIN_CHARACTER_ID=2118711449` to `.env` (the real secrets file, not committed)
+2. Add `ADMIN_CHARACTER_ID=ADMIN_CHARACTER_ID` to `.env` (the real secrets file, not committed)
 3. Add `ADMIN_CHARACTER_ID=0  # owner's primary EVE character ID` to `.env.example`
 
 **Relevant Context:**
@@ -71,7 +71,7 @@ in or restores a session, so every page already sees the correct tier without to
 Supabase.
 
 **Expected Outcomes:**
-- After SSO login as `2118711449`, `session_state["tier"] == "admin"`
+- After SSO login as `ADMIN_CHARACTER_ID`, `session_state["tier"] == "admin"`
 - After page-reload (session restore via `_restore_session`), tier is still `"admin"`
 - `dashboard()` sync block does not overwrite `"admin"` with the DB value `"free"`
 - No DB write is made changing the user's tier to `"admin"`
