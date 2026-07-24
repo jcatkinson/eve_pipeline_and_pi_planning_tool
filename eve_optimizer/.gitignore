@@ -43,3 +43,4 @@ htmlcov/
 
 # OAuth Token Cache
 .tokens.json
+.streamlit/secrets.toml

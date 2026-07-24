@@ -70,14 +70,13 @@ def net_sell_value(
     sales_tax_rate: float,
     broker_fee_rate: float,
     transport_risk_factor: float = 0.0,
+    poco_tax_rate: float = 0.0,
 ) -> float:
     """
     Net ISK received after all deductions for a sell-order transaction.
 
     net = (gross_price * units)
-          - (gross_price * units * sales_tax_rate)
-          - (gross_price * units * broker_fee_rate)
-          - (gross_price * units * transport_risk_factor)
+          * (1 - sales_tax_rate - broker_fee_rate - transport_risk_factor - poco_tax_rate)
 
     Args:
         gross_price: Per-unit market sell price (ISK).
@@ -85,12 +84,13 @@ def net_sell_value(
         sales_tax_rate: Effective sales tax as decimal.
         broker_fee_rate: Effective broker fee as decimal.
         transport_risk_factor: Fractional expected loss from hauling (0.0 if local).
+        poco_tax_rate: POCO export tax rate (0.0 to disable). Default: 0.0.
 
     Returns:
         Net ISK after all deductions.
     """
     gross = gross_price * units
-    return gross * (1.0 - sales_tax_rate - broker_fee_rate - transport_risk_factor)
+    return gross * (1.0 - sales_tax_rate - broker_fee_rate - transport_risk_factor - poco_tax_rate)
 
 
 # ---------------------------------------------------------------------------

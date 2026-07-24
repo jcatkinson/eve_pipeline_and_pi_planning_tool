@@ -24,16 +24,23 @@ load_dotenv(_PROJECT_ROOT / ".env")
 ESI_BASE_URL: str = "https://esi.evetech.net/latest"
 ESI_CLIENT_ID: str = os.environ.get("ESI_CLIENT_ID", "")
 ESI_CLIENT_SECRET: str = os.environ.get("ESI_CLIENT_SECRET", "")
-ESI_CALLBACK_URL: str = os.environ.get("ESI_CALLBACK_URL", "http://localhost:8000/callback")
+ESI_CALLBACK_URL: str = os.environ.get("ESI_CALLBACK_URL", "")
 ESI_SCOPES: list[str] = os.environ.get(
     "ESI_SCOPES",
-    "esi-wallet.read_character_wallet.v1 esi-skills.read_skills.v1 esi-markets.read_character_orders.v1",
+    "esi-wallet.read_character_wallet.v1 esi-skills.read_skills.v1 esi-markets.read_character_orders.v1 esi-wallet.read_corporation_wallets.v1",
 ).split()
+
+# Corp wallet scope used by the dedicated corp API character
+ESI_CORP_WALLET_SCOPE: str = "esi-wallet.read_corporation_wallets.v1"
 
 # ---------------------------------------------------------------------------
 # Character
 # ---------------------------------------------------------------------------
 CHARACTER_ID: int = int(os.environ.get("CHARACTER_ID", "0"))
+
+# Owner's primary EVE character ID — grants permanent "admin" tier (in-memory only).
+# Set to 0 to disable the admin override entirely.
+ADMIN_CHARACTER_ID: int = int(os.environ.get("ADMIN_CHARACTER_ID", "0"))
 
 # ---------------------------------------------------------------------------
 # Market region — The Forge (Jita)
@@ -84,3 +91,29 @@ PLANET_TYPES: list[str] = [
 # SQLite database path
 # ---------------------------------------------------------------------------
 DB_PATH: Path = _PROJECT_ROOT / "pi_blueprints.db"
+
+# ---------------------------------------------------------------------------
+# Supabase
+# ---------------------------------------------------------------------------
+SUPABASE_URL: str = os.environ.get("SUPABASE_URL", "")
+SUPABASE_ANON_KEY: str = os.environ.get("SUPABASE_ANON_KEY", "")
+SUPABASE_SERVICE_ROLE_KEY: str = os.environ.get("SUPABASE_SERVICE_ROLE_KEY", "")
+
+# ---------------------------------------------------------------------------
+# Corp verification (Moonpack Associates)
+# ---------------------------------------------------------------------------
+CORP_API_CHARACTER_ID: int = int(os.environ.get("CORP_API_CHARACTER_ID", "0"))
+MOONPACK_CORP_ID: int = int(os.environ.get("MOONPACK_CORP_ID", "0"))
+
+# ISK payment amounts per tier
+CORP_PAYMENT_AMOUNT_PREMIUM: int = 500_000_000       # 500M ISK
+CORP_PAYMENT_AMOUNT_CORPORATE: int = 1_000_000_000   # 1B ISK
+
+# ---------------------------------------------------------------------------
+# Subscription tier character limits
+# ---------------------------------------------------------------------------
+TIER_CHAR_LIMITS: dict[str, int | None] = {
+    "free":      2,
+    "premium":   10,
+    "corporate": None,   # None = unlimited
+}
