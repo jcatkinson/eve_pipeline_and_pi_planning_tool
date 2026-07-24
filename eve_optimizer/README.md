@@ -1,3 +1,35 @@
+mailto:bugs@atkinsoncybersec.ca?subject=Eve%20Pi%20Optimizer%20Bug%20Report&body=Description%20of%20the%20issue:%0A%0ACharacter%20Name:%0AError%20Details:
+
+## 🚀 Features & Architecture
+
+### Phase 1: Core Calculation Engine
+* **Planetary Industry Modeling:** Full pipeline tracking from raw resource extraction to high-tier product yields.
+* **Profit Engine:** Calculates net margins and ISK efficiency using real-time market data.
+
+### Phase 2: Web Dashboard & Access Control (Current)
+* **Streamlit Web Interface (`src/interfaces/streamlit_app.py`):** Interactive dashboard replacing the legacy CLI for multi-character management.
+* **Supabase Integration (`user_service.py`):** Persistent cloud database storing user tiers, character associations, and subscription statuses.
+* **Multi-Character EVE SSO:** Seamless OAuth authentication supporting primary accounts and linked industry alts.
+* **Automated Payment Verifier (`payment_verifier.py`):** Background worker querying ESI corporate wallet journals to verify in-game ISK transfers and auto-upgrade subscription tiers.
+* **Role-Based Access Control:** Tier-based character limits (`Free`, `Pro`, `Corporate`) with built-in `Admin` bypass for platform administration.
+
+---
+
+## 🛠️ Project Structure
+
+```text
+eve_optimizer/
+├── .streamlit/          # Local Streamlit secrets & config
+├── src/
+│   ├── core/            # Business logic (ESI client, user service, payment verifier)
+│   ├── interfaces/      # UI components (Streamlit app, legacy CLI)
+│   ├── utils/           # Database setup and general helpers
+│   ├── config.py        # Centralized settings & secrets management
+│   └── profit_engine.py # Core profit & market margin calculations
+├── tests/               # Pytest suite verifying core logic & ESI mocks
+└── streamlit_app.py     # Main application entry point
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
 # EVE Online PI Profit Engine
 
 A market-aware Python CLI tool that interfaces with the EVE Swagger Interface (ESI) and the Static Data Export (SDE) to calculate real-time net profitability for Planetary Industry (PI) chains.
